@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './Metronome.css'
+import './click1.wav'
+import './click2.wav'
 
 class App extends Component{
     constructor(props){
