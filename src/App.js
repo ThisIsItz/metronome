@@ -55,7 +55,6 @@ class App extends Component{
         const bpm = event.target.value
 
         if(this.state.playing){
-            console.log(event.target.value)
             clearInterval(this.timer)
             this.timer = setInterval(
                 this.playClick, (60/ bpm) * 1000
