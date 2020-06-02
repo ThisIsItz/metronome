@@ -51,10 +51,22 @@ class App extends Component{
         }))
     }
 
+    handleBpmChange = event => {
+        const bpm = event.target.value
 
-    changeBpm = event => {
-        const bpm = event.target.value;
-        this.setState({bpm})
+        if(this.state.playing){
+            console.log(event.target.value)
+            clearInterval(this.timer)
+            this.timer = setInterval(
+                this.playClick, (60/ bpm) * 1000
+            )
+            this.setState({
+                count: 0,
+                bpm
+            })
+        }else{
+            this.setState({bpm})
+        }
     }
 
     render(){
@@ -64,7 +76,7 @@ class App extends Component{
             <div className="metronome">
                 <div className="bpm-slider">
                     <div>{bpm} BPM</div>
-                    <input type="range" min="20" max="400" value={bpm} onChange={this.changeBpm}/>
+                    <input type="range" min="20" max="400" value={bpm} onChange={this.handleBpmChange}/>
                 </div>
                 <button className="button" onClick={this.startAudio}>{playing ? "Stop" : "Start"}</button>
             </div>
